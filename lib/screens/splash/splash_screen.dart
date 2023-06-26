@@ -15,12 +15,16 @@ class SplashScreen extends StatelessWidget {
       },
     );
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Container(
-        child: Image.asset(
-          'assets/images/splash_image.png',
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          fit: BoxFit.fill,
+        child: AspectRatio(
+          aspectRatio: 9 / 16,
+          child: Image.asset(
+            'assets/images/splash_image.png',
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            fit: BoxFit.fill,
+          ),
         ),
       ),
     );
