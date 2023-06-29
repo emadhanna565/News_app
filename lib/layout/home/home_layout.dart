@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:news_app/model/category.dart';
-import 'package:news_app/screens/articles/articles_screen.dart';
 import 'package:news_app/screens/categories_screen/categories_screen.dart';
+import 'package:news_app/screens/home_news_fragment/home_news_fragment.dart';
 import 'package:news_app/screens/settings/settings_screen.dart';
 
 class HomeLayout extends StatefulWidget {
@@ -69,6 +69,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                 ),
                 InkWell(
                   onTap: () {
+                    selectedCategory = null;
                     selectedSetting = true;
                     Navigator.pop(context);
                     setState(() {});
@@ -114,7 +115,9 @@ class _HomeLayoutState extends State<HomeLayout> {
               ? selectedSetting
                   ? SettingsScreen()
                   : CategoriesScreen(SelectedCategory)
-              : ArticlesScreen() // SettingsScreen() ,
+              : HomeNewsFragment(
+                  categoryModel: selectedCategory!,
+                ) // SettingsScreen() ,
 
           ),
     );

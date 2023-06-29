@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/layout/home/home_layout.dart';
+import 'package:news_app/screens/article_details/article_details.dart';
 import 'package:news_app/screens/splash/splash_screen.dart';
 import 'package:news_app/shared/style/theme/myTheme.dart';
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       routes: {
         SplashScreen.routeName: (_) => SplashScreen(),
         HomeLayout.routeName: (_) => HomeLayout(),
+        ArticleDetails.routeName: (_) => ArticleDetails(),
       },
     );
   }

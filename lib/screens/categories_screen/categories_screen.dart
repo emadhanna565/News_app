@@ -10,26 +10,32 @@ class CategoriesScreen extends StatelessWidget {
 
   List<CategoryModel> categories = [
     CategoryModel(
+        categoryId: 'sports',
         title: 'Sports',
         imagePath: 'sports.png',
         backgroundColor: Color(0xffC91C22)),
     CategoryModel(
+        categoryId: 'general',
         title: 'Politics',
         imagePath: 'Politics.png',
         backgroundColor: Color(0xff003E90)),
     CategoryModel(
+        categoryId: 'health',
         title: 'Health',
         imagePath: 'health.png',
         backgroundColor: Color(0xffED1E79)),
     CategoryModel(
+        categoryId: 'business',
         title: 'Business',
         imagePath: 'business.png',
         backgroundColor: Color(0xffCF7E48)),
     CategoryModel(
+        categoryId: 'entertainment',
         title: 'Environment',
         imagePath: 'environment.png',
         backgroundColor: Color(0xff4882CF)),
     CategoryModel(
+        categoryId: 'science',
         title: 'Science',
         imagePath: 'science.png',
         backgroundColor: Color(0xffF2D352)),

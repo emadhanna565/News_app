@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/api/model/Source.dart';
 import 'package:news_app/shared/style/component/article_item.dart';
 import 'package:news_app/shared/style/component/tab_item.dart';
 
 class ArticlesScreen extends StatefulWidget {
+  List<Source>? sources;
+
+  ArticlesScreen(this.sources);
+
   @override
   State<ArticlesScreen> createState() => _ArticlesScreenState();
 }
@@ -10,23 +15,13 @@ class ArticlesScreen extends StatefulWidget {
 class _ArticlesScreenState extends State<ArticlesScreen> {
   int selectedIndex = 0;
 
-  List<String> sources = [
-    "BBC News",
-    "CBC News",
-    "ON News",
-    "BIEN News",
-    "Sky News",
-    "Al Jazeera News",
-    "Nile News",
-  ];
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: sources.length,
+      length: widget.sources?.length ?? 0,
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           TabBar(
@@ -36,23 +31,17 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
                 selectedIndex = index;
                 setState(() {});
               },
-              tabs: sources
-                  .map((source) => TabItem(
-                      selected: selectedIndex == sources.indexOf(source),
-                      sourceTitle: source))
-                  .toList()),
-          SizedBox(
+              tabs: widget.sources
+                      ?.map((source) => TabItem(
+                          selected:
+                              selectedIndex == widget.sources?.indexOf(source),
+                          source: source))
+                      .toList() ??
+                  []),
+          const SizedBox(
             height: 20,
           ),
-          Expanded(
-            child: ListView.separated(
-              itemBuilder: (context, index) => ArticleItem(),
-              separatorBuilder: (context, index) => SizedBox(
-                height: 15,
-              ),
-              itemCount: 5,
-            ),
-          ),
+          Expanded(child: ArticleItem(source: widget.sources![selectedIndex])),
         ],
       ),
     );
