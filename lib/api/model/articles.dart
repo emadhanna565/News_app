@@ -10,6 +10,15 @@ import 'package:news_app/api/model/Source.dart';
 /// content : "The latest five minute news bulletin from BBC World Service."
 
 class Articles {
+  Source? source;
+  dynamic author;
+  String? title;
+  String? description;
+  String? url;
+  String? urlToImage;
+  String? publishedAt;
+  String? content;
+
   Articles({
     this.source,
     this.author,
@@ -31,15 +40,6 @@ class Articles {
     publishedAt = json['publishedAt'];
     content = json['content'];
   }
-
-  Source? source;
-  dynamic author;
-  String? title;
-  String? description;
-  String? url;
-  String? urlToImage;
-  String? publishedAt;
-  String? content;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

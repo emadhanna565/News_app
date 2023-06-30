@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
 import 'package:news_app/api/model/NewsResponse.dart';
@@ -8,11 +9,13 @@ import 'package:news_app/screens/article_details/article_details.dart';
 class ArticleItem extends StatelessWidget {
   Source source;
 
-  ArticleItem({required this.source});
+  ArticleItem({
+    required this.source,
+  });
 
   @override
   Widget build(BuildContext context) {
-    NewsResponse newsResponse;
+    Articles article;
     return FutureBuilder<NewsResponse>(
         future: ApiManager.getNews(source.id ?? ''),
         builder: (context, snapshot) {
@@ -43,24 +46,47 @@ class ArticleItem extends StatelessWidget {
               return InkWell(
                 onTap: () {
                   Navigator.pushNamed(context, ArticleDetails.routeName,
-                      arguments: Articles());
+                      arguments: articles[index]);
                 },
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                  const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                   child: Column(
                     children: [
-                      Container(
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: CachedNetworkImage(
+                          imageUrl: '${articles![index].urlToImage}',
+                          imageBuilder: (context, imageProvider) => Container(
+                            height: 250,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                  image: imageProvider, fit: BoxFit.fill),
+                            ),
+                          ),
+                          placeholder: (context, url) {
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          },
+                          errorWidget: (context, url, error) {
+                            return Icon(Icons.error);
+                          },
+                        ),
+                      ),
+                      /* Container(
                         width: double.infinity,
                         height: 250,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             image: DecorationImage(
                               image: NetworkImage(
-                                  '${articles![index].urlToImage}'),
+                                  '${articles[index].urlToImage}'),
                               fit: BoxFit.fill,
                             )),
-                      ),
+                      ),*/
                       SizedBox(
                         height: 15,
                       ),

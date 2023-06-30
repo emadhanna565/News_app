@@ -33,15 +33,16 @@ class MyTheme {
           fontWeight: FontWeight.bold,
           fontSize: 24,
           color: Colors.black,
-        ),
-        titleSmall: TextStyle(
-          fontSize: 14,
-          color: Colors.white,
-        ),
-        titleMedium: TextStyle(fontSize: 10, color: Color(0xff79828B)),
-        titleLarge: TextStyle(
-          fontSize: 13,
-          color: Color(0xffa3a3a3),
-        ),
-      ));
+      ),
+      titleSmall: TextStyle(
+        fontSize: 14,
+        color: Colors.white,
+      ),
+      titleMedium: TextStyle(fontSize: 10, color: Color(0xff79828B)),
+      titleLarge: TextStyle(
+        fontSize: 13,
+        color: Color(0xffa3a3a3),
+      ),
+    ),
+  );
 }
